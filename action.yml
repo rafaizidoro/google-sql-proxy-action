@@ -1,0 +1,33 @@
+name: "Google Cloud SQL Proxy Action"
+author: "Rafael Izidoro"
+description: "Sets up and runs the Google Cloud SQL Proxy"
+
+branding:
+  icon: "database"
+  color: "blue"
+
+runs:
+  using: "node20"
+  main: "dist/main/index.js"
+
+inputs:
+  instance_connection_name:
+    description: "The Cloud SQL instance connection name (project:region:instance)"
+    required: true
+  address:
+    description: "Address to bind Cloud SQL instance listeners. Defaults to 127.0.0.1"
+    required: false
+  port:
+    description: "Local port to proxy listener"
+    required: false
+  private_ip:
+    description: "Connect to the private ip address"
+    required: false
+  bin_path:
+    description: "The path to download the proxy"
+    required: false
+    default: "/tmp"
+
+outputs:
+  socket:
+    description: The Cloud SQL Proxy unix socket
